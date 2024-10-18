@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurante_ulises/firebase_options.dart';
 import 'package:restaurante_ulises/modules/auth/code.dart';
+import 'package:restaurante_ulises/modules/auth/create_account.dart';
 import 'package:restaurante_ulises/modules/auth/login.dart';
 import 'package:restaurante_ulises/modules/auth/newPassword.dart';
 import 'package:restaurante_ulises/modules/auth/recovery.dart';
@@ -28,7 +29,8 @@ class MainApp extends StatelessWidget {
         '/home':(context)=>const Home(),
         '/recovery':(context)=>const Recovery(),
         '/code':(context)=>const Code(),
-        '/passwords':(context)=>const NewPassword()
+        '/passwords':(context)=>const NewPassword(),
+        '/create':(context)=>const CreateAccount(),
       },
     );
   }

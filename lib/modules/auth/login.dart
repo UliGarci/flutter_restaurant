@@ -144,7 +144,25 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                )
+                ),
+                SizedBox(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/create');
+                    },
+                    style: OutlinedButton.styleFrom(
+                      elevation: 0,
+                      shadowColor: Colors.transparent,
+                      backgroundColor: Colors.transparent,
+                    ),
+                    child: const Text(
+                      'Crear cuenta',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
