@@ -1,11 +1,17 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurante_ulises/firebase_options.dart';
 import 'package:restaurante_ulises/modules/auth/code.dart';
 import 'package:restaurante_ulises/modules/auth/login.dart';
 import 'package:restaurante_ulises/modules/auth/newPassword.dart';
 import 'package:restaurante_ulises/modules/auth/recovery.dart';
 import 'package:restaurante_ulises/navigation/home.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MainApp());
 }
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836113906302",
+    "project_id": "restaurant-dc2c3",
+    "storage_bucket": "restaurant-dc2c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836113906302:android:3b644c35a83e20deee362f",
+        "android_client_info": {
+          "package_name": "com.example.restaurante_ulises"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMmlZAWBKqsaFOSuaaOoNca_4qc5dfWqc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
