@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating/flutter_rating.dart';
 import 'package:restaurante_ulises/modules/restaurant/entities/restaurant.dart';
+import 'package:restaurante_ulises/modules/restaurant/widgets/custom_list_restaurant.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -19,7 +18,8 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     (() async => {
-          await db.collection("restaurants").get().then((event) {
+          db.collection("restaurants").snapshots().listen((event) {
+            restaurants.clear();
             for (var doc in event.docs) {
               final restaurant = Restaurant(
                   doc.data()['name'],
@@ -52,41 +52,13 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: const Text('Inicio'),
         ),
-        body: Column(
-          children: [
-            Row(
-              children: [
-                Image.network(
-                  restaurants[0].images[0],
-                  width: 80,
-                  height: 60,
-                ),
-                const SizedBox(
-                  width: 8,
-                ),
-                Column(
-                  children: [
-                    Text(restaurants[0].name),
-                    SizedBox(
-                        width: 200,
-                        height: 100,
-                        child: Text(restaurants[0].description)),
-                  ],
-                ),
-                const Spacer(),
-                StarRating(
-                  rating: restaurants[0].rating/restaurants[0].count,
-                  color: Colors.red,
-                  borderColor: Colors.purple,
-                  starCount: 5,
-                  size: 12,
-                  filledIcon: Icons.favorite,
-                  halfFilledIcon: Icons.favorite_border,
-                  emptyIcon: Icons.favorite_outline,
-                )
-              ],
-            )
-          ],
-        ));
+        body: ListView.separated(
+          separatorBuilder: (context, index) => const Divider(),
+            padding: const EdgeInsets.all(16),
+            itemCount: restaurants.length,
+            itemBuilder: (context, index) {
+              final restaurant = restaurants[index];
+              return CustomListRestaurants(restaurant: restaurant);
+            }));
   }
 }
