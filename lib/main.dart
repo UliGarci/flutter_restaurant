@@ -6,6 +6,7 @@ import 'package:restaurante_ulises/modules/auth/create_account.dart';
 import 'package:restaurante_ulises/modules/auth/login.dart';
 import 'package:restaurante_ulises/modules/auth/newPassword.dart';
 import 'package:restaurante_ulises/modules/auth/recovery.dart';
+import 'package:restaurante_ulises/modules/restaurant/widgets/custom_show_restaurant.dart';
 import 'package:restaurante_ulises/navigation/home.dart';
 
 Future<void> main() async {
