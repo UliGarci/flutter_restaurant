@@ -15,50 +15,64 @@ class CustomShowRestaurant extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(restaurant.name),
+        centerTitle: false, // Evitar que el título esté centrado
+        title: Row(
+          children: [
+            Expanded(
+              child: Text(
+                restaurant.name,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            StarRating(
+              rating: restaurant.rating / restaurant.count,
+              color: Colors.yellow,
+              borderColor: Colors.black,
+              starCount: 5,
+              size: 20,
+            ),
+          ],
+        ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              CarouselSlider(
-                options: CarouselOptions(height: 200.0),
-                items: restaurant.images.map((imgURL) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10.0),
-                            image: DecorationImage(image: NetworkImage(imgURL))
-                          ),
-                          );
-                    },
-                  );
-                }).toList(),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(restaurant.name),
+            // Carrusel de imágenes
+            CarouselSlider(
+              options: CarouselOptions(
+                height: 200.0,
+                autoPlay: true,
+                enlargeCenterPage: true,
               ),
-              // Image.network(restaurant.images[0],height: 80,width: 80,),
-              const SizedBox(
-                height: 16,
-              ),
-              StarRating(
-                rating: restaurant.rating / restaurant.count,
-                color: Colors.red,
-                borderColor: Colors.black,
-                starCount: 5,
-                size: 14,
-                filledIcon: Icons.favorite,
-                halfFilledIcon: Icons.favorite_border,
-                emptyIcon: Icons.favorite_outline,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              Text(restaurant.description)
-            ],
-          ),
+              items: restaurant.images.map((imgURL) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        image: DecorationImage(
+                          image: NetworkImage(imgURL),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 16),
+            // Descripción ocupando el ancho completo
+            Text(
+              restaurant.description,
+              style: const TextStyle(fontSize: 16),
+              textAlign: TextAlign.justify,
+            ),
+          ],
         ),
       ),
     );
